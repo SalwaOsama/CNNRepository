@@ -140,17 +140,15 @@ class CNN:
                             learning_rate_: self.learning_rate}
                     # Loss
                     sess.run(optimizer, feed_dict=feed)
-                if (e % self.eval_iter == 0):
-                    test_acc = []
-                    for x_t, y_t in self.get_batches(X_test, y_test, self.batch_size):
-                        feed = {inputs_: x_t,
-                                labels_: y_t,
-                                keep_prob_: self.keep_prob}
-                        batch_acc = sess.run(accuracy, feed_dict=feed)
-                        test_acc.append(batch_acc)
-                    print("Test accuracy: {:.6f}".format(np.mean(test_acc)))
-
             saver.save(sess, "checkpoints-cnn/har.ckpt")
+            test_acc = []
+            for x_t, y_t in self.get_batches(X_test, y_test, self.batch_size):
+                feed = {inputs_: x_t,
+                        labels_: y_t,
+                        keep_prob_: 1}
+                batch_acc = sess.run(accuracy, feed_dict=feed)
+                test_acc.append(batch_acc)
+            print("Test accuracy: {:.6f}".format(np.mean(test_acc)))
 
        # with tf.Session(graph=graph) as sess:
             # Restore
