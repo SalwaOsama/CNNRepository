@@ -3,6 +3,7 @@ import shelve
 import numpy as np
 from StructData import StructData
 import os
+import Utility as ut
 
 class DataSet:
     # training data
