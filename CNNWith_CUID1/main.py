@@ -1,6 +1,7 @@
 from DataSet import DataSet
 from CNN import CNN
 from AlternativeCNN import CNN
+import CNNWithoutFeatures
 
 segment_size = 128
 n_filters = 196
@@ -15,7 +16,7 @@ n_classes = 6
 pathDataset = 'datasets/uci_raw_data'
 ds = DataSet(pathDataset, 'l')
 shelveDataFile = ds.PreparingData(segment_size=segment_size)
-cnn = CNN(shelveDataFile, segment_size=segment_size, n_filters=n_filters,
+cnn = CNNWithoutFeatures.CNN(shelveDataFile, segment_size=segment_size, n_filters=n_filters,
           n_channels=n_classes, epochs=epochs, batch_size=batch_size, learning_rate=learning_rate,
           dropout_rate=dropout_rate, eval_iter=eval_iter, filters_size=filters_size, n_classes=n_classes)
 cnn.RunAndAccuracy()

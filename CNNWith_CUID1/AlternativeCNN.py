@@ -72,7 +72,7 @@ class CNN:
                                      kernel_size=self.filters_size, strides=1,
                                      padding='same', activation=tf.nn.relu)
             max_pool = tf.layers.max_pooling1d(
-                inputs=conv1, pool_size=2, strides=2, padding='same')
+                inputs=conv1, pool_size=4, strides=4, padding='same')
 
         # flat and add features
         with graph.as_default():
